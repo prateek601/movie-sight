@@ -33,7 +33,7 @@ class MovieResponse {
 class Movie {
   bool? adult;
   String? backdropPath;
-  List<int>? genreIds;
+  List<dynamic>? genreIds;
   int? id;
   String? mediaType;
   String? title;
@@ -47,7 +47,7 @@ class Movie {
   double? voteAverage;
   int? voteCount;
   String? name;
-  List<String>? originCountry;
+  List<dynamic>? originCountry;
   String? originalName;
   String? firstAirDate;
 
@@ -75,7 +75,7 @@ class Movie {
   Movie.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
-    genreIds = json['genre_ids'].cast<int>();
+    genreIds = json['genre_ids'];
     id = json['id'];
     mediaType = json['media_type'];
     title = json['title'];
@@ -89,7 +89,7 @@ class Movie {
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
     name = json['name'];
-    originCountry = json['origin_country'].cast<String>();
+    originCountry = json['origin_country'];
     originalName = json['original_name'];
     firstAirDate = json['first_air_date'];
   }

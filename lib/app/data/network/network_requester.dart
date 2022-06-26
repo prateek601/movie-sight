@@ -26,7 +26,7 @@ class NetworkRequester {
           'Accept': Headers.jsonContentType,
         },
         queryParameters: {
-          'api-key': Env.apiKey
+          'api_key': Env.apiKey
         });
 
     _dio = Dio(dioOptions);

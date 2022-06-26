@@ -6,4 +6,6 @@ class Env {
   static const baseURL = "https://api.themoviedb.org/3/";
 
   static const apiKey = "fa0c92af3ea4daf346aace070bc25bf8";
+
+  static const imageBaseUrl = "https://image.tmdb.org/t/p/w400";
 }
