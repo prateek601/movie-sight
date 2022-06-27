@@ -21,18 +21,41 @@ class MovieWidget extends StatelessWidget {
           color: Colors.grey[900], borderRadius: BorderRadius.circular(10)),
       child: Row(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Image.network(
-              Env.imageBaseUrl + movieList[index].posterPath!,
-              height: 230,
-              fit: BoxFit.cover,
+          Expanded(
+            flex: 4,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.network(
+                movieList[index].posterPath != null
+                    ? Env.imageBaseUrl + movieList[index].posterPath!
+                    : '',
+                height: 230,
+                fit: BoxFit.cover,
+                errorBuilder: (context, object, stackTrace) {
+                  return Center(
+                    child: Container(
+                      height: 230,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.grey[800]!,width: 2)
+                      ),
+                      child: const Icon(
+                        Icons.photo,
+                        color: Colors.white,
+                        size: 38,
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
           ),
           const SizedBox(
             width: 15,
           ),
           Expanded(
+            flex: 6,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -43,7 +66,9 @@ class MovieWidget extends StatelessWidget {
                     fontSize: 18,
                   ),
                 ),
-                const SizedBox(height: 40,),
+                const SizedBox(
+                  height: 40,
+                ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
@@ -58,11 +83,13 @@ class MovieWidget extends StatelessWidget {
                     Text(
                       '${movieList[index].voteAverage!.round()} / 10',
                       style:
-                      const TextStyle(color: Colors.yellow, fontSize: 18),
+                          const TextStyle(color: Colors.yellow, fontSize: 18),
                     )
                   ],
                 ),
-                const SizedBox(height: 40,),
+                const SizedBox(
+                  height: 40,
+                ),
                 Text(
                   movieList[index].releaseDate ??
                       movieList[index].firstAirDate!,

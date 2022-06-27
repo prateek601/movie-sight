@@ -40,11 +40,11 @@ class Movie {
   String? originalLanguage;
   String? originalTitle;
   String? overview;
-  double? popularity;
+  num? popularity;
   String? posterPath;
   String? releaseDate;
   bool? video;
-  double? voteAverage;
+  num? voteAverage;
   int? voteCount;
   String? name;
   List<dynamic>? originCountry;

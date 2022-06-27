@@ -9,7 +9,6 @@ import 'package:trending_movies/app/data/repository/movie_repository.dart';
 part 'movie_data_state.dart';
 
 class MovieDataCubit extends Cubit<MovieDataState> {
-  MovieRepository movieRepository = MovieRepository();
   List<Movie> movieList = [];
 
   MovieDataCubit() : super(MovieDataLoading()) {
@@ -17,7 +16,7 @@ class MovieDataCubit extends Cubit<MovieDataState> {
   }
 
   Future<void> fetchTrendingMovies() async {
-    RepoResponse<MovieResponse> res = await movieRepository.getTrendingMovies();
+    RepoResponse<MovieResponse> res = await MovieRepository.getTrendingMovies();
 
     if (res.error == null) {
       movieList = res.data!.results!;
