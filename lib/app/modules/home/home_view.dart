@@ -36,7 +36,11 @@ class _HomeViewState extends State<HomeView> {
                 BlocBuilder<MovieDataCubit, MovieDataState>(
                   builder: (context, state) {
                     if (state is MovieDataLoading) {
-                      return const CircularProgressIndicator();
+                      return const Center(
+                          child: Padding(
+                        padding: EdgeInsets.only(top: 100),
+                        child: CircularProgressIndicator(),
+                      ));
                     } else if (state is MovieDataSuccess) {
                       return MovieListWidget(state.movieList);
                     } else {
