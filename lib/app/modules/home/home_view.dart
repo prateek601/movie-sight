@@ -17,7 +17,6 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          // physics: NeverScrollableScrollPhysics(),
           child: Padding(
             padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
             child: Column(
@@ -25,15 +24,39 @@ class _HomeViewState extends State<HomeView> {
               children: [
                 Container(
                   height: 60,
-                  color: const Color(0xff2f3648),
+                  decoration: BoxDecoration(
+                      color: const Color(0xff2f3648),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Row(
+                    children: const [
+                      Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Icon(
+                          Icons.search,
+                          color: Colors.grey,
+                          size: 20,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Text(
+                          'search movies',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 20,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 const Padding(
                   padding: EdgeInsets.only(top: 30),
                   child: Text(
-                    'Trending movies',
+                    'Trending Now',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 28,
+                      fontSize: 26,
                     ),
                   ),
                 ),
@@ -79,7 +102,7 @@ class _HomeViewState extends State<HomeView> {
       );
     } else {
       return ListView.separated(
-        padding: EdgeInsets.only(top: 30),
+        padding: const EdgeInsets.only(top: 30),
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: movieList.length,
@@ -97,25 +120,63 @@ class _HomeViewState extends State<HomeView> {
 
   Widget movieWidget({required List<Movie> movieList, required int index}) {
     return Container(
-      height: 200,
-      decoration: BoxDecoration(color: Colors.grey[900]),
-      child: Column(
+      height: 250,
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+          color: Colors.grey[900], borderRadius: BorderRadius.circular(10)),
+      child: Row(
         children: [
-          Image.network(
-            Env.imageBaseUrl + movieList[index].posterPath!,
-            height: 160,
-            fit: BoxFit.cover,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.network(
+              Env.imageBaseUrl + movieList[index].posterPath!,
+              height: 230,
+              fit: BoxFit.cover,
+            ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              movieList[index].title ?? movieList[index].name!,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-              ),
+          const SizedBox(
+            width: 15,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  movieList[index].title ?? movieList[index].name!,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
+                ),
+                const SizedBox(height: 40,),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    const Icon(
+                      Icons.star,
+                      color: Colors.yellowAccent,
+                      size: 22,
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      '${movieList[index].voteAverage!.round()} / 10',
+                      style:
+                          const TextStyle(color: Colors.yellow, fontSize: 18),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 40,),
+                Text(
+                  movieList[index].releaseDate ??
+                      movieList[index].firstAirDate!,
+                  style: const TextStyle(
+                    color: Colors.orangeAccent,
+                    fontSize: 18,
+                  ),
+                ),
+              ],
             ),
           )
         ],
