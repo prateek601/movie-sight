@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trending_movies/app/data/models/response/movie_response.dart';
 import 'package:trending_movies/app/data/values/env.dart';
+import 'package:trending_movies/utils/image/custom_network_image.dart';
 
 class MovieWidget extends StatelessWidget {
   final List<Movie> movieList;
@@ -24,31 +25,14 @@ class MovieWidget extends StatelessWidget {
           Expanded(
             flex: 4,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.network(
-                movieList[index].posterPath != null
-                    ? Env.imageBaseUrl + movieList[index].posterPath!
-                    : '',
-                height: 230,
-                fit: BoxFit.cover,
-                errorBuilder: (context, object, stackTrace) {
-                  return Center(
-                    child: Container(
-                      height: 230,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Colors.grey[800]!,width: 2)
-                      ),
-                      child: const Icon(
-                        Icons.photo,
-                        color: Colors.white,
-                        size: 38,
-                      ),
-                    ),
-                  );
-                },
-              ),
+                borderRadius: BorderRadius.circular(10),
+                child: CustomNetworkImage(
+                  image: movieList[index].posterPath != null
+                      ? Env.imageBaseUrl + movieList[index].posterPath!
+                      : '',
+                  height: 230,
+                  width: double.infinity,
+                )
             ),
           ),
           const SizedBox(
@@ -83,7 +67,7 @@ class MovieWidget extends StatelessWidget {
                     Text(
                       '${movieList[index].voteAverage!.round()} / 10',
                       style:
-                          const TextStyle(color: Colors.yellow, fontSize: 18),
+                      const TextStyle(color: Colors.yellow, fontSize: 18),
                     )
                   ],
                 ),
