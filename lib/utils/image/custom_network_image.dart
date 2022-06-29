@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trending_movies/app/data/values/env.dart';
 
 class CustomNetworkImage extends StatelessWidget {
   final String image;
@@ -16,7 +17,7 @@ class CustomNetworkImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.network(
-      image,
+      Env.imageBaseUrl + image,
       height: height,
       width: width,
       fit: fit,
