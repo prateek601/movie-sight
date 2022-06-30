@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trending_movies/app/data/values/env.dart';
 import 'package:trending_movies/app/modules/home/cubit/movie_data_cubit.dart';
 import 'package:trending_movies/app/modules/home/home_view.dart';
+import 'package:trending_movies/app/modules/internet/cubit/internet_cubit.dart';
+
+import 'utils/toast/toast.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,9 +26,20 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider<MovieDataCubit>(
             create: (context) => MovieDataCubit(),
+          ),
+          BlocProvider<InternetCubit>(
+            create: (context) => InternetCubit(),
           )
         ],
-        child: const HomeView(),
+        child: BlocListener<InternetCubit, InternetState>(
+            listener: (context, state) {
+              if (state is Disconnected) {
+                Toast.showToast(context: context, message: 'Disconnected');
+              } else if (state is Connected) {
+                Toast.showToast(context: context, message: 'Connected');
+              }
+            },
+            child: const HomeView()),
       ),
     );
   }
