@@ -29,7 +29,7 @@ class _HomeViewState extends State<HomeView> {
                     'Trending Now',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 26,
+                      fontSize: 22,
                     ),
                   ),
                 ),

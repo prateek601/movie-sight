@@ -24,7 +24,7 @@ class MovieWidget extends StatelessWidget {
         );
       },
       child: Container(
-        height: 250,
+        height: 220,
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
             color: Colors.grey[900], borderRadius: BorderRadius.circular(10)),
@@ -38,7 +38,7 @@ class MovieWidget extends StatelessWidget {
                     image: movieList[index].posterPath != null
                         ? movieList[index].posterPath!
                         : '',
-                    height: 230,
+                    height: 200,
                     width: double.infinity,
                   )),
             ),
@@ -54,7 +54,7 @@ class MovieWidget extends StatelessWidget {
                     movieList[index].title ?? movieList[index].name!,
                     style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 18,
+                      fontSize: 17,
                     ),
                   ),
                   const SizedBox(
@@ -66,7 +66,7 @@ class MovieWidget extends StatelessWidget {
                       const Icon(
                         Icons.star,
                         color: Colors.yellowAccent,
-                        size: 22,
+                        size: 20,
                       ),
                       const SizedBox(
                         width: 10,
@@ -74,7 +74,7 @@ class MovieWidget extends StatelessWidget {
                       Text(
                         '${movieList[index].voteAverage!.round()} / 10',
                         style:
-                            const TextStyle(color: Colors.yellow, fontSize: 18),
+                            const TextStyle(color: Colors.yellow, fontSize: 16),
                       )
                     ],
                   ),
@@ -86,7 +86,7 @@ class MovieWidget extends StatelessWidget {
                         movieList[index].firstAirDate!,
                     style: const TextStyle(
                       color: Colors.orangeAccent,
-                      fontSize: 18,
+                      fontSize: 16,
                     ),
                   ),
                 ],

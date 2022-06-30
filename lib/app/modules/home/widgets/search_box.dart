@@ -24,7 +24,7 @@ class SearchBox extends StatelessWidget {
         );
       },
       child: Container(
-        height: 60,
+        height: 50,
         decoration: BoxDecoration(
             color: const Color(0xff2f3648),
             borderRadius: BorderRadius.circular(10)),
@@ -35,7 +35,7 @@ class SearchBox extends StatelessWidget {
               child: Icon(
                 Icons.search,
                 color: Colors.grey,
-                size: 20,
+                size: 16,
               ),
             ),
             Padding(
@@ -44,7 +44,7 @@ class SearchBox extends StatelessWidget {
                 'search movies',
                 style: TextStyle(
                   color: Colors.grey,
-                  fontSize: 20,
+                  fontSize: 17,
                 ),
               ),
             )
