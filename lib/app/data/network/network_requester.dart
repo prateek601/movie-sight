@@ -33,13 +33,6 @@ class NetworkRequester {
 
     _dio.interceptors.clear();
 
-    // (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-    //     (HttpClient client) {
-    //   client.badCertificateCallback =
-    //       (X509Certificate cert, String host, int port) => true;
-    //   return client;
-    // };
-
     _dio.interceptors.addAll([
       LogInterceptor(
         error: true,
@@ -50,7 +43,6 @@ class NetworkRequester {
         responseHeader: true,
         logPrint: _printLog,
       ),
-      // DioCacheManager(CacheConfig(baseUrl: Env.baseURL)).interceptor
     ]);
   }
 
