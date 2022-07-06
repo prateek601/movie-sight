@@ -4,6 +4,7 @@ class Toast {
   Toast._privateConstructor();
 
   static showToast({required BuildContext context, required String message}) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
