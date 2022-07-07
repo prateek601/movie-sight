@@ -20,7 +20,10 @@ class SearchView extends StatelessWidget {
                 SearchTextField(
                   fillColor: Colors.grey[900]!,
                   searchCallback: (searchQuery) {
-                    searchCubit.fetchSearchData(searchQuery: searchQuery);
+                    searchCubit.debounce.run(
+                      () =>
+                          searchCubit.fetchSearchData(searchQuery: searchQuery),
+                    );
                   },
                   controller: searchCubit.searchController,
                 ),

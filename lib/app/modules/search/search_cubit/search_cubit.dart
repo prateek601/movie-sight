@@ -5,12 +5,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:trending_movies/app/data/models/dto/repo_response.dart';
 import 'package:trending_movies/app/data/models/response/movie_response.dart';
 import 'package:trending_movies/app/data/repository/movie_repository.dart';
+import 'package:trending_movies/utils/debounce/debounce.dart';
 
 part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {
   List<Movie> movieList = [];
   late TextEditingController searchController;
+  final debounce = Debounce(delay: const Duration(milliseconds: 500));
 
   SearchCubit() : super(SearchInitial()) {
     searchController = TextEditingController();
@@ -37,4 +39,11 @@ class SearchCubit extends Cubit<SearchState> {
   void emitSearchError() => emit(SearchError());
 
   void emitSearchLoading() => emit(SearchLoading());
+
+  @override
+  Future<void> close() {
+    searchController.dispose();
+    debounce.cancel();
+    return super.close();
+  }
 }

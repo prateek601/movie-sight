@@ -26,7 +26,7 @@ class SearchTextField extends StatelessWidget {
       controller: controller,
       enableInteractiveSelection: false,
       textAlignVertical: TextAlignVertical.center,
-      onSubmitted: searchCallback,
+      onChanged: searchCallback,
       autofocus: autoFocus,
       textInputAction: TextInputAction.search,
       cursorColor: Colors.white,

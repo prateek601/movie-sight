@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
-
 class Debounce {
   final Duration delay;
   Timer? _debounce;
@@ -9,11 +7,11 @@ class Debounce {
   Debounce({required this.delay});
 
   void run(action) {
-    if(_debounce?.isActive ?? false) _debounce?.cancel();
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
     _debounce = Timer(delay, action);
   }
 
-  void cancel () {
+  void cancel() {
     _debounce?.cancel();
   }
 }
