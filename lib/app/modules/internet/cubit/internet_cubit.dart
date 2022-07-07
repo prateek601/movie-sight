@@ -12,7 +12,13 @@ class InternetCubit extends Cubit<InternetState> {
   bool firstTime = true;
 
   InternetCubit() : super(CheckingConnection()) {
+    checkConnectivity();
     subscribeConnectionStream();
+  }
+
+  Future<void> checkConnectivity() async {
+    var connectivityResult = await connectivity.checkConnectivity();
+    emitConnectionState(result: connectivityResult);
   }
 
   void subscribeConnectionStream() {

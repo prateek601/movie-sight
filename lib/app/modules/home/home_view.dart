@@ -42,7 +42,7 @@ class _HomeViewState extends State<HomeView> {
                         child: CircularProgressIndicator(),
                       ));
                     } else if (state is MovieDataSuccess) {
-                      return MovieListWidget(state.movieList);
+                      return MovieListWidget(state.movieResponse.results!);
                     } else {
                       return const Padding(
                         padding: EdgeInsets.only(top: 200),

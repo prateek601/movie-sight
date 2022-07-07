@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:trending_movies/app/data/values/env.dart';
 import 'package:trending_movies/app/modules/home/cubit/movie_data_cubit.dart';
 import 'package:trending_movies/app/modules/home/home_view.dart';
@@ -7,8 +9,13 @@ import 'package:trending_movies/app/modules/internet/cubit/internet_cubit.dart';
 
 import 'utils/toast/toast.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final storage = await HydratedStorage.build(storageDirectory: await getTemporaryDirectory());
+  HydratedBlocOverrides.runZoned(
+        () => runApp(const MyApp()),
+    storage: storage,
+  );
 }
 
 class MyApp extends StatelessWidget {

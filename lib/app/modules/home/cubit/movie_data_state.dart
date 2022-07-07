@@ -8,7 +8,7 @@ class MovieDataLoading extends MovieDataState {}
 class MovieDataError extends MovieDataState {}
 
 class MovieDataSuccess extends MovieDataState {
-  final List<Movie> movieList;
+  final MovieResponse movieResponse;
 
-  MovieDataSuccess({required this.movieList});
+  MovieDataSuccess({required this.movieResponse});
 }
