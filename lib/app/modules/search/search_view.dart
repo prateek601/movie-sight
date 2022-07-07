@@ -13,45 +13,45 @@ class SearchView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 20,right: 20),
-                child: SearchTextField(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: Column(
+              children: [
+                SearchTextField(
                   fillColor: Colors.grey[900]!,
                   searchCallback: (searchQuery) {
                     searchCubit.fetchSearchData(searchQuery: searchQuery);
                   },
                   controller: searchCubit.searchController,
                 ),
-              ),
-              BlocBuilder<SearchCubit, SearchState>(
-                builder: (context, state) {
-                  if (state is SearchLoading) {
-                    return const Center(
-                        child: Padding(
-                      padding: EdgeInsets.only(top: 100),
-                      child: CircularProgressIndicator(),
-                    ));
-                  } else if (state is SearchSuccess) {
-                    return MovieListWidget(state.movieList);
-                  } else if(state is SearchError){
-                    return const Padding(
-                      padding: EdgeInsets.only(top: 200),
-                      child: Text(
-                        'Error in loading data!',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
+                BlocBuilder<SearchCubit, SearchState>(
+                  builder: (context, state) {
+                    if (state is SearchLoading) {
+                      return const Center(
+                          child: Padding(
+                        padding: EdgeInsets.only(top: 100),
+                        child: CircularProgressIndicator(),
+                      ));
+                    } else if (state is SearchSuccess) {
+                      return MovieListWidget(state.movieList);
+                    } else if (state is SearchError) {
+                      return const Padding(
+                        padding: EdgeInsets.only(top: 200),
+                        child: Text(
+                          'Error in loading data!',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
                         ),
-                      ),
-                    );
-                  } else {
-                    return const SizedBox();
-                  }
-                },
-              )
-            ],
+                      );
+                    } else {
+                      return const SizedBox();
+                    }
+                  },
+                )
+              ],
+            ),
           ),
         ),
       ),
