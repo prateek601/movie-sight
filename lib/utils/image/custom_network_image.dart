@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:trending_movies/app/data/values/env.dart';
 
@@ -16,12 +17,12 @@ class CustomNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.network(
-      Env.imageBaseUrl + image,
+    return CachedNetworkImage(
+      imageUrl: Env.imageBaseUrl + image,
       height: height,
       width: width,
       fit: fit,
-      errorBuilder: (context, object, stackTrace) {
+      errorWidget: (context, object, stackTrace) {
         return Center(
           child: Container(
             height: height,
