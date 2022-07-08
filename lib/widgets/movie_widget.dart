@@ -84,7 +84,7 @@ class MovieWidget extends StatelessWidget {
                   ),
                   Text(
                     movieList[index].releaseDate ??
-                        movieList[index].firstAirDate!,
+                        movieList[index].firstAirDate ?? '',
                     style: const TextStyle(
                       color: Colors.orangeAccent,
                       fontSize: 16,
