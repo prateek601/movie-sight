@@ -17,6 +17,7 @@ class MovieWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        FocusScope.of(context).unfocus();
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => MovieDetailsView(movie: movieList[index]),
