@@ -40,8 +40,10 @@ class InternetCubit extends Cubit<InternetState> {
     firstTime = false;
   }
 
-  void cancelSubscription() {
+  @override
+  Future<void> close() {
     subscription.cancel();
+    return super.close();
   }
 
   void emitConnected() => emit(Connected());
