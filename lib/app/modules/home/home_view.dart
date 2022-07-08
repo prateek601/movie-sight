@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trending_movies/app/modules/home/cubit/movie_data_cubit.dart';
 import 'package:trending_movies/app/modules/home/widgets/search_box.dart';
 import 'package:trending_movies/widgets/movie_list_widget.dart';
+import 'package:trending_movies/widgets/shimmer/movie_cards_shimmer.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -36,11 +37,7 @@ class _HomeViewState extends State<HomeView> {
                 BlocBuilder<MovieDataCubit, MovieDataState>(
                   builder: (context, state) {
                     if (state is MovieDataLoading) {
-                      return const Center(
-                          child: Padding(
-                        padding: EdgeInsets.only(top: 100),
-                        child: CircularProgressIndicator(),
-                      ));
+                      return const MovieCardsShimmer();
                     } else if (state is MovieDataSuccess) {
                       return MovieListWidget(state.movieResponse.results!);
                     } else {

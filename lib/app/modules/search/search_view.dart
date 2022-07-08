@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trending_movies/app/modules/search/search_cubit/search_cubit.dart';
 import 'package:trending_movies/utils/textfield/search_text_field.dart';
 import 'package:trending_movies/widgets/movie_list_widget.dart';
+import 'package:trending_movies/widgets/shimmer/movie_cards_shimmer.dart';
 
 class SearchView extends StatelessWidget {
   const SearchView({Key? key}) : super(key: key);
@@ -32,11 +33,7 @@ class SearchView extends StatelessWidget {
                   BlocBuilder<SearchCubit, SearchState>(
                     builder: (context, state) {
                       if (state is SearchLoading) {
-                        return const Center(
-                            child: Padding(
-                          padding: EdgeInsets.only(top: 100),
-                          child: CircularProgressIndicator(),
-                        ));
+                        return const MovieCardsShimmer();
                       } else if (state is SearchSuccess) {
                         return MovieListWidget(state.movieList);
                       } else if (state is SearchError) {
