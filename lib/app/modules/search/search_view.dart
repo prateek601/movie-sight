@@ -17,18 +17,37 @@ class SearchView extends StatelessWidget {
           onTap: FocusScope.of(context).unfocus,
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
               child: Column(
                 children: [
-                  SearchTextField(
-                    fillColor: Colors.grey[900]!,
-                    searchCallback: (searchQuery) {
-                      searchCubit.debounce.run(
-                        () => searchCubit.fetchSearchData(
-                            searchQuery: searchQuery),
-                      );
-                    },
-                    controller: searchCubit.searchController,
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: Navigator.of(context).pop,
+                          child: const Icon(
+                        Icons.keyboard_backspace_sharp,
+                        color: Colors.grey,
+                      )),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Expanded(
+                        child: SizedBox(
+                          height: 50,
+                          child: SearchTextField(
+                            hintText: 'Search movies',
+                            fillColor: Colors.grey[900]!,
+                            searchCallback: (searchQuery) {
+                              searchCubit.debounce.run(
+                                () => searchCubit.fetchSearchData(
+                                    searchQuery: searchQuery),
+                              );
+                            },
+                            controller: searchCubit.searchController,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   BlocBuilder<SearchCubit, SearchState>(
                     builder: (context, state) {
