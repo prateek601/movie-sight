@@ -37,6 +37,7 @@ class SearchTextField extends StatelessWidget {
         fillColor: fillColor,
         filled: true,
         hintText: hintText,
+        hintStyle: const TextStyle(color: Colors.grey),
         errorBorder: OutlineInputBorder(
           borderSide: const BorderSide(
             color: Colors.red,
