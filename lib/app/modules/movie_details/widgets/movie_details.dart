@@ -47,7 +47,44 @@ class MovieDetails extends StatelessWidget {
                 child: Text(
                   movie.overview ?? '',
                   style: const TextStyle(
-                      color: Colors.white60, fontSize: 12, letterSpacing: 0.5),
+                    color: Colors.white60,
+                    fontSize: 12,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Release Date: ${movie.releaseDate ?? ''}',
+                      style: const TextStyle(
+                        color: Colors.greenAccent,
+                      ),
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        const Icon(
+                          Icons.star,
+                          color: Colors.yellowAccent,
+                          size: 20,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          '${movie.voteAverage!.round()} / 10',
+                          style: const TextStyle(
+                            color: Colors.orangeAccent,
+                            fontSize: 16,
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ],
