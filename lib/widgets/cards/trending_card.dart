@@ -27,6 +27,8 @@ class TrendingCard extends StatelessWidget {
           image: movieList[index].posterPath != null
               ? movieList[index].posterPath!
               : '',
+          height: 250,
+          width: double.infinity,
         ),
       ),
     );

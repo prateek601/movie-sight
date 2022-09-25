@@ -15,7 +15,7 @@ class SearchTextField extends StatelessWidget {
     this.hintText,
     this.suffixIcon,
     required this.fillColor,
-    required this.searchCallback,
+    this.searchCallback,
     required this.controller,
     this.autoFocus = true,
   }): super(key: key);
@@ -26,7 +26,13 @@ class SearchTextField extends StatelessWidget {
       controller: controller,
       enableInteractiveSelection: false,
       textAlignVertical: TextAlignVertical.center,
-      onChanged: searchCallback,
+      onChanged: (text) {
+        if(text.trim().isNotEmpty) {
+          if(searchCallback != null) {
+            searchCallback!(text.trim());
+          }
+        }
+      },
       autofocus: autoFocus,
       textInputAction: TextInputAction.search,
       cursorColor: Colors.white,

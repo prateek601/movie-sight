@@ -16,6 +16,7 @@ class SearchView extends StatelessWidget {
         child: GestureDetector(
           onTap: FocusScope.of(context).unfocus,
           child: SingleChildScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             child: Padding(
               padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
               child: Column(
@@ -49,7 +50,14 @@ class SearchView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  BlocBuilder<SearchCubit, SearchState>(
+                  BlocConsumer<SearchCubit, SearchState>(
+                    listener: (context,state) {
+                      if(state is SearchSuccess) {
+                        FocusScope.of(context).unfocus();
+                      } else if(state is SearchError) {
+                        FocusScope.of(context).unfocus();
+                      }
+                    },
                     builder: (context, state) {
                       if (state is SearchLoading) {
                         return const MovieCardsShimmer();

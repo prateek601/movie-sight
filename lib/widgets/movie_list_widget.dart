@@ -21,7 +21,7 @@ class MovieListWidget extends StatelessWidget {
       );
     } else {
       return GridView.builder(
-        padding: const EdgeInsets.only(top: 30),
+        padding: const EdgeInsets.only(top: 30,bottom: 30),
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: movieList.length,
