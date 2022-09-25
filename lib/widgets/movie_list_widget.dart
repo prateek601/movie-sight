@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trending_movies/app/data/models/response/movie_response.dart';
-import 'package:trending_movies/widgets/movie_widget.dart';
+import 'package:trending_movies/widgets/cards/trending_card.dart';
 
 class MovieListWidget extends StatelessWidget {
   final List<Movie> movieList;
@@ -20,17 +20,21 @@ class MovieListWidget extends StatelessWidget {
         ),
       );
     } else {
-      return ListView.separated(
+      return GridView.builder(
         padding: const EdgeInsets.only(top: 30),
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: movieList.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 15,
+          mainAxisSpacing: 15,
+          mainAxisExtent: 250,
+        ),
         itemBuilder: (context, index) {
-          return MovieWidget(movieList: movieList, index: index);
-        },
-        separatorBuilder: (context, index) {
-          return const SizedBox(
-            height: 20,
+          return TrendingCard(
+            movieList: movieList,
+            index: index,
           );
         },
       );
