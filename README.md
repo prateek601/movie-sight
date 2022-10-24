@@ -2,7 +2,7 @@
 
 A flutter application which shows trending movies of the week using The Movie Database (TMDB) API
 
-<img alt="Home Screen" height="450" src="assets/home_screen.png" width="250"/>  <img alt="Movie Details Screen" height="450" src="assets/details_screen.png" width="250"/>  <img alt="Search Screen" height="450" src="assets/search_screen.png" width="250"/>
+<img alt="Home Screen" height="550" src="assets/home_screen.png" width="250"/>  <img alt="Movie Details Screen" height="550" src="assets/detail_screen.png" width="250"/>  <img alt="Search Screen" height="550" src="assets/search_screen.png" width="250"/>
 
 ## Features
 
